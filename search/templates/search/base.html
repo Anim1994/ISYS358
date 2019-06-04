@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Title -->
+    <!-- Required meta tags -->
     <title>AUSTechConnect</title>
 
     <!-- Required Meta Tags Always Come First -->
@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{% static 'search/favicon.ico' %}">
+    <link rel="shortcut icon" href="/static/search/favicon.ico">
 
     {% block css %}
         {% include 'search/components/css.html' %}
@@ -21,6 +21,17 @@
 
 <body>
 <!-- Skippy -->
+<div class="row">
+    <div class="col-md-8">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
 <a id="skippy" class="sr-only sr-only-focusable u-skippy" href="#content">
     <div class="container">
         <span class="u-skiplink-text">Skip to main content</span>
@@ -37,7 +48,9 @@
 
 <!-- ========== MAIN CONTENT ========== -->
 <main id="content" role="main">
-    {% block content %} {% endblock %}
+    {% block content %}
+
+    {% endblock %}
 </main>
 <!-- ========== END MAIN CONTENT ========== -->
 
@@ -46,7 +59,6 @@
     {% include 'search/components/footer.html' %}
     <!-- ========== END FOOTER ========== -->
 {% endblock %}
-
 
 <!-- ========== SECONDARY CONTENTS ========== -->
 {% block sidebarnav %}
@@ -57,7 +69,7 @@
 
 {% block signup %}
     <!-- Signup Modal Window -->
-    {% include 'search/components/signup.html' %}
+    {% include 'users/signup.html' %}
     <!-- End Signup Modal Window -->
 {% endblock %}
 
@@ -79,5 +91,6 @@
     {% include 'search/components/jsplugins.html' %}
 {% endblock %}
 {% block extra_js %} {% endblock %}
+
 </body>
 </html>
